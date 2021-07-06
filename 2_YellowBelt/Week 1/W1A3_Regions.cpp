@@ -30,18 +30,10 @@ bool operator<(const Region& lhs, const Region& rhs) {
 }
 
 int FindMaxRepetitionCount(const vector<Region>& regions) {
-    if (regions.empty()) {
-        return 0;
-    } else {
-        map<Region, int> reg2freq;
-        for (const auto& region : regions) {
-            ++reg2freq[region];
-        }
-
-        int max = -1;
-        for (const auto& [region, freq] : reg2freq) {
-            max = std::max(max, freq);
-        }
-        return max;
+    int max = 0;
+    map<Region, int> reg2freq;
+    for (const auto& region : regions) {
+        max = std::max(max, ++reg2freq[region]);
     }
+    return max;
 }
